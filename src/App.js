@@ -1,6 +1,15 @@
 import { useState } from "react";
 import "./App.css";
 
+export const replaceCamelBySpaces = (color) => {
+  return color.replace(/\B([A-Z])\B/g, " $1");
+  //si encuentra una letra mayúscula en el medio
+  //de una palabra, la reemplazará por un espacio
+  //seguida de la letra que vaya después
+};
+
+console.log(replaceCamelBySpaces("RedYellow"));
+
 function App() {
   const [isDisabled, setIsDisabled] = useState(false);
   const [color, setColor] = useState("red");

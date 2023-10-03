@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 // import { logRoles } from "@testing-library/react";
-import App from "./App";
+import App, { replaceCamelBySpaces } from "./App";
 
 const renderSus = () => render(<App />);
 
@@ -81,4 +81,16 @@ test("Button should change to every colors", () => {
   expect(colorButton).toBeEnabled();
   fireEvent.click(colorButton);
   expect(colorButton).toHaveStyle({ "background-color": "blue" });
+});
+
+describe("Spaces before camelCase capital letters", () => {
+  test("Works for no inner capital letters", () => {
+    expect(replaceCamelBySpaces("Red")).toBe("Red");
+  });
+  test("Works foro one inner capital letters", () => {
+    expect(replaceCamelBySpaces("MidnightBlue")).toBe("Midnight Blue");
+  });
+  test("Works foro multiple inner capital letters", () => {
+    expect(replaceCamelBySpaces("MediumVioletRed")).toBe("Medium Violet Red");
+  });
 });
