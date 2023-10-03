@@ -8,21 +8,24 @@ export const replaceCamelBySpaces = (color) => {
   //seguida de la letra que vaya después
 };
 
-console.log(replaceCamelBySpaces("RedYellow"));
+export const primaryColor = "MediumVioletRed"; //before red
+export const secondaryColor = "MediumTurquoise"; //before blue
+export const tertiaryColor = "MediumVioletRed"; //before gray
 
 function App() {
   const [isDisabled, setIsDisabled] = useState(false);
-  const [color, setColor] = useState("red");
-  const nextColor = color === "red" ? "blue" : "red";
+  const [color, setColor] = useState(primaryColor);
+  const nextColor = color === primaryColor ? secondaryColor : primaryColor;
 
   return (
     <div>
       <button
-        style={{ backgroundColor: isDisabled ? "gray" : color }}
+        aria-label="change-color-button"
+        style={{ backgroundColor: isDisabled ? tertiaryColor : color }}
         onClick={() => setColor(nextColor)}
         disabled={isDisabled}
       >
-        Change to {nextColor}
+        Change to {replaceCamelBySpaces(nextColor)}
       </button>
       <br />
       {/* Option:1  <label>
